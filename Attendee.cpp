@@ -15,7 +15,7 @@ Attendee :: Attendee(string fullName, string email, string phoneNumber, Event ev
     this->event = event;
 }
 
-void Attendee :: attendeePrintInfo() {
+void Attendee :: attendeePrintInfo(Event event) {
     cout << "-----------------------------------" << endl;
     cout << "Information about attendee: " << fullName << endl;
     cout << "Email: " << email << endl;

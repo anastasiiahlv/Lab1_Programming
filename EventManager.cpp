@@ -62,8 +62,8 @@ void EventManager::findAttendee(string fullName) {
     int n = 0;
     for (int i = 0; i < attendees.size(); i++) {
         if (attendees[i].fullName == fullName) {
-            attendeePrintInfo();
             n++;
+            attendees[i].attendeePrintInfo(attendees[i].event);
             break;
         }
     }
@@ -84,7 +84,7 @@ void EventManager::attendeeRegistration(Event event) {
 
     for (int i = 0; i < attendees.size(); i++) {
         if (attendees[i].event == event)
-            attendees[i].attendeePrintInfo();
+            attendees[i].attendeePrintInfo(event);
     }
 }
 

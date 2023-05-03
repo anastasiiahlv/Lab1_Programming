@@ -17,7 +17,6 @@ public:
 public:
     Event();
     Event(string name, string date, string time, string location, string id);
-
     void eventPrintInfo() const;
     friend bool operator ==(Event& event1, Event& event2);
     ~Event();

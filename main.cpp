@@ -26,16 +26,11 @@ int main()
     Workshop workshop2("FACTECH 2023", "15.07.2023", "12:00", "Bangkok , Thailand",
                        "WCA413523", "Engineering", 250);
 
-    Event event1("Happy Birthday", "20.04.2023", "15:00", "Caffee", "23.24.25");
-    Event event2("Wedding", "20.09.2023", "19:00", "Caffee", "1");
-
-    //manager.addEvent(event1);
-    //manager.addEvent(event2);
-
     manager.addEvent(workshop1);
-    manager.addEvent(conferense1);
+    manager.addEvent(workshop2);
 
-    conferense2.eventPrintInfo();
+    manager.addEvent(conferense1);
+    manager.addEvent(conferense1);
 
     Attendee person1("Andrii Shevshenko", "andrii@gmail.com", "380968875884", conferense1);
     Attendee person2("Alla Shevsh", "alla@gmail.com", "3809688758", conferense2);
@@ -43,7 +38,20 @@ int main()
     manager.addAttendee(person1);
     manager.addAttendee(person2);
 
-    manager.attendeeRegistration(conferense1);
+    //manager.attendeeRegistration(conferense1);
+
+    manager.findEvent("WCA526672");
+    manager.findAttendee("Andrii Shevshenko");
+
+
+
+    //person2.attendeePrintInfo();
+
+    //Event event1("Happy Birthday", "20.04.2023", "15:00", "Caffee", "23.24.25");
+    //Event event2("Wedding", "20.09.2023", "19:00", "Caffee", "1");
+
+    //manager.addEvent(event1);
+    //manager.addEvent(event2);
 
     //event1.eventPrintInfo();
     //event2.eventPrintInfo();

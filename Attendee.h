@@ -17,7 +17,7 @@ public:
 public:
     Attendee();
     Attendee(string fullName, string email, string phoneNumber, Event event);
-    void attendeePrintInfo();
+    void attendeePrintInfo(Event event);
     ~Attendee();
 };
 
