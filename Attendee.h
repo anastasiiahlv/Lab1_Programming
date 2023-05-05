@@ -8,16 +8,19 @@
 using namespace std;
 
 class Attendee {
-public:
+protected:
     string fullName;
     string email;
     string phoneNumber;
-    Event event;
+    string eventName;
+    Event* event;
 
 public:
     Attendee();
-    Attendee(string fullName, string email, string phoneNumber, Event event);
-    void attendeePrintInfo(Event event);
+    Attendee(string fullName, string email, string phoneNumber, Event* event);
+    string getNameOfAttendee();
+    Event* getEvent();
+    void attendeePrintInfo();
     ~Attendee();
 };
 

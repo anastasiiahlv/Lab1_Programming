@@ -13,6 +13,14 @@ Event :: Event(string name, string date, string time, string location, string id
     this->id = id;
 }
 
+string Event:: getNameOfEvent() {
+    return name;
+}
+
+string Event:: getId() {
+    return id;
+}
+
 void Event :: eventPrintInfo() const{
     cout << "-----------------------------------" << endl;
     cout << "Information about event: " << name << endl;

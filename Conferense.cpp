@@ -1,10 +1,8 @@
 #include "Conferense.h"
 #include "Event.h"
 #include <iostream>
-#include <cmath>
 #include <string>
-#include <vector>
-#include <utility>
+
 using namespace std;
 
 Conferense::Conferense() = default;

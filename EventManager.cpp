@@ -7,15 +7,15 @@
 #include "Attendee.h"
 using namespace std;
 
-EventManager::EventManager(string name, string date, string time, string location, string id, string fullName, string email, string phoneNumber, Event event)
+EventManager::EventManager(string name, string date, string time, string location, string id, string fullName, string email, string phoneNumber, Event* event)
         :Event(name, date, time, location, id), Attendee(fullName, email, phoneNumber, event) {};
 
-EventManager::EventManager(vector <Event> events, vector <Attendee> attendees) {
+EventManager::EventManager(vector <Event*> events, vector <Attendee> attendees) {
     this->events = events;
     this->attendees = attendees;
 }
 
-void EventManager::addEvent(Event event) {
+void EventManager::addEvent(Event* event) {
     events.push_back(event);
 }
 
@@ -23,11 +23,11 @@ void EventManager::addAttendee(Attendee attendee) {
     attendees.push_back(attendee);
 }
 
-void EventManager::removeEvent(Event event) {
-    string name = event.name;
+void EventManager::removeEvent(Event* event) {
+    string name = event->getNameOfEvent();
     for (int i = 0; i < events.size(); i++) {
-        if (events[i].name == name) {
-            vector<Event>::iterator it = events.begin() + i;
+        if (events[i]->getNameOfEvent() == name) {
+            vector<Event*>::iterator it = events.begin() + i;
             events.erase(it);
             break;
         }
@@ -35,9 +35,9 @@ void EventManager::removeEvent(Event event) {
 }
 
 void EventManager::removeAttendee(Attendee attendee) {
-    string name = attendee.fullName;
+    string name = attendee.getNameOfAttendee();
     for (int i = 0; i < attendees.size(); i++) {
-        if (attendees[i].fullName == name) {
+        if (attendees[i].getNameOfAttendee() == name) {
             vector<Attendee>::iterator it = attendees.begin() + i;
             attendees.erase(it);
             break;
@@ -47,9 +47,9 @@ void EventManager::removeAttendee(Attendee attendee) {
 
 void EventManager::findEvent(string id) {
     int n = 0;
-    for (int i = 0; i < events.size(); i++) {
-        if (events[i].id == id) {
-            events[i].eventPrintInfo();
+    for (auto & event : events) {
+        if (event->getId() == id) {
+            event->eventPrintInfo();
             n++;
             break;
         }
@@ -60,10 +60,10 @@ void EventManager::findEvent(string id) {
 
 void EventManager::findAttendee(string fullName) {
     int n = 0;
-    for (int i = 0; i < attendees.size(); i++) {
-        if (attendees[i].fullName == fullName) {
+    for (auto & attendee : attendees) {
+        if (attendee.getNameOfAttendee() == fullName) {
             n++;
-            attendees[i].attendeePrintInfo(attendees[i].event);
+            attendee.attendeePrintInfo();
             break;
         }
     }
@@ -71,7 +71,7 @@ void EventManager::findAttendee(string fullName) {
         cout << "No attendee with that name has been found. Please try again." << endl;
 }
 
-void EventManager::attendeeRegistration(Event event) {
+void EventManager::attendeeRegistration(Event* event) {
     cout << "Enter attendee's full name: ";
     getline(cin, fullName);
     cout << "Enter attendee's email: ";
@@ -82,9 +82,9 @@ void EventManager::attendeeRegistration(Event event) {
     Attendee registred_attendee(fullName, email, phoneNumber, event);
     addAttendee(registred_attendee);
 
-    for (int i = 0; i < attendees.size(); i++) {
-        if (attendees[i].event == event)
-            attendees[i].attendeePrintInfo(event);
+    for (auto & attendee : attendees) {
+        if (attendee.getEvent() == event)
+            attendee.attendeePrintInfo();
     }
 }
 

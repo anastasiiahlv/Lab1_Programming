@@ -7,7 +7,7 @@
 using namespace std;
 
 class Event {
-public:
+protected:
     string name;
     string date;
     string time;
@@ -17,6 +17,8 @@ public:
 public:
     Event();
     Event(string name, string date, string time, string location, string id);
+    string getNameOfEvent();
+    string getId();
     void eventPrintInfo() const;
     friend bool operator ==(Event& event1, Event& event2);
     ~Event();
