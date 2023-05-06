@@ -16,9 +16,11 @@ protected:
 
 public:
     Workshop(string name, string date, string time, string location, string id, string topic, double price);
+    string getTopicOfWorkshop();
+    double getPriceForWorkshop() const;
+    void setFeedback();
     void getFeedback();
+    void getInfoAboutWorkshop();
     ~Workshop();
 };
-
-
 #endif //LAB2_WORKSHOP_H

@@ -12,17 +12,16 @@ protected:
     string fullName;
     string email;
     string phoneNumber;
-    string eventName;
     Event* event;
 
 public:
     Attendee();
     Attendee(string fullName, string email, string phoneNumber, Event* event);
     string getNameOfAttendee();
+    string getEmail();
+    string getPhoneNumber();
     Event* getEvent();
-    void attendeePrintInfo();
+    void getInfoAboutAttendee();
     ~Attendee();
 };
-
-
 #endif //LAB2_ATTENDEE_H

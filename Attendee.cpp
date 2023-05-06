@@ -1,14 +1,12 @@
 #include "Attendee.h"
 #include <iostream>
-#include <cmath>
 #include <string>
-#include <vector>
 #include "Event.h"
 using namespace std;
 
-Attendee :: Attendee() = default;
+Attendee::Attendee() =default;
 
-Attendee :: Attendee(string fullName, string email, string phoneNumber, Event* event) {
+Attendee::Attendee(string fullName, string email, string phoneNumber, Event* event) {
     this->fullName = fullName;
     this->email = email;
     this->phoneNumber = phoneNumber;
@@ -19,11 +17,19 @@ string Attendee::getNameOfAttendee() {
     return fullName;
 }
 
+string Attendee::getEmail() {
+    return email;
+}
+
+string Attendee::getPhoneNumber() {
+    return phoneNumber;
+}
+
 Event* Attendee::getEvent() {
     return event;
 }
 
-void Attendee :: attendeePrintInfo() {
+void Attendee::getInfoAboutAttendee() {
     cout << "-----------------------------------" << endl;
     cout << "Information about attendee: " << fullName << endl;
     cout << "Email: " << email << endl;
@@ -32,4 +38,4 @@ void Attendee :: attendeePrintInfo() {
     cout << "-----------------------------------" << endl;
 }
 
-Attendee :: ~Attendee() = default;
+Attendee::~Attendee() = default;

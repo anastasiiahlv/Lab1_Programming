@@ -49,7 +49,7 @@ void EventManager::findEvent(string id) {
     int n = 0;
     for (auto & event : events) {
         if (event->getId() == id) {
-            event->eventPrintInfo();
+            event->getInfoAboutEvent();
             n++;
             break;
         }
@@ -63,7 +63,7 @@ void EventManager::findAttendee(string fullName) {
     for (auto & attendee : attendees) {
         if (attendee.getNameOfAttendee() == fullName) {
             n++;
-            attendee.attendeePrintInfo();
+            attendee.getInfoAboutAttendee();
             break;
         }
     }
@@ -84,8 +84,39 @@ void EventManager::attendeeRegistration(Event* event) {
 
     for (auto & attendee : attendees) {
         if (attendee.getEvent() == event)
-            attendee.attendeePrintInfo();
+            attendee.getInfoAboutAttendee();
     }
+}
+
+void EventManager::printAllEvents() {
+    if(events.empty())
+        cout << "No events were registered." << endl;
+    else {
+        cout << "Registred events: " << endl;
+        for (auto & event : events)
+                event->getInfoAboutEvent();
+    }
+}
+
+void EventManager::printAllAttendees() {
+    if(attendees.empty())
+        cout << "No attendees were registered." << endl;
+    else {
+        cout << "Registred attendees: " << endl;
+        for (auto &attendee: attendees)
+            attendee.getInfoAboutAttendee();
+    }
+}
+
+bool operator ==(Attendee& attendee1, Attendee& attendee2) {
+    return attendee1.getEvent() == attendee2.getEvent();
+}
+
+void EventManager::isAttendeesAtSameEvent(Attendee attendee1, Attendee attendee2) {
+    if(attendee1 == attendee2)
+        cout << "These attendees are at the same event: " << attendee1.getEvent()->getNameOfEvent() << endl;
+    else
+        cout << "These attendees are NOT at the same event." << endl;
 }
 
 EventManager::~EventManager() = default;

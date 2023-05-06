@@ -1,9 +1,8 @@
 #include <iostream>
-#include <cmath>
 #include <string>
 #include <vector>
 #include "Event.h"
-#include "Conferense.h"
+#include "Conference.h"
 #include "Workshop.h"
 #include "Attendee.h"
 #include "EventManager.h"
@@ -15,10 +14,10 @@ int main()
     vector <Attendee> attendees;
     EventManager manager(events, attendees);
 
-    Conferense conferense1("Conference on Technology, Engineering & Management","21.05.2023","17:00",
+    Conference conferense1("Conference on Technology, Engineering & Management", "21.05.2023", "17:00",
                            "Ipoh, Malaysia", "WCA414076", "Systems Engineering", 150);
-    Conferense conferense2("Conference on Agricultural and Biological Science", "30.06.2023", "16:00",
-                           "Oslo, Norway","WCA415656", "Biology", 120);
+    Conference conferense2("Conference on Agricultural and Biological Science", "30.06.2023", "16:00",
+                           "Oslo, Norway", "WCA415656", "Biology", 120);
 
     Workshop workshop1("Time Management", "17.05.2023", "15:00", "Bangalore, India",
                        "WCA526672", "Psychology", 100);
@@ -32,15 +31,19 @@ int main()
     manager.addEvent(&conferense1);
 
     Attendee person1("Andrii Shevshenko", "andrii@gmail.com", "380968875884", &conferense1);
-    Attendee person2("Alla Shevsh", "alla@gmail.com", "3809688758", &conferense2);
+    Attendee person2("Alla Shevsh", "alla@gmail.com", "380968875899", &workshop2);
+    Attendee person3("Anna Klymenko", "anna@gmail.com", "380967356472", &conferense1);
 
     manager.addAttendee(person1);
     manager.addAttendee(person2);
+    manager.addAttendee(person3);
 
-    manager.attendeeRegistration(&conferense1);
+    //manager.attendeeRegistration(&conferense1);
 
-    manager.findEvent("WCA526672");
-    manager.findAttendee("Andrii Shevshenko");
+    //manager.findEvent("WCA526672");
+    //manager.findAttendee("Andrii Shevshenko");
+
+    //manager.isAttendeesAtSameEvent(person1, person3);
 
     return 0;
 }
