@@ -22,6 +22,7 @@ public:
     string getPhoneNumber();
     Event* getEvent();
     void getInfoAboutAttendee();
+    friend bool operator ==(Attendee& attendee1, Attendee& attendee2);
     ~Attendee();
 };
 #endif //LAB2_ATTENDEE_H

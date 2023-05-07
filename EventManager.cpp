@@ -7,12 +7,10 @@
 #include "Attendee.h"
 using namespace std;
 
-EventManager::EventManager(string name, string date, string time, string location, string id, string fullName, string email, string phoneNumber, Event* event)
-        :Event(name, date, time, location, id), Attendee(fullName, email, phoneNumber, event) {};
-
-EventManager::EventManager(vector <Event*> events, vector <Attendee> attendees) {
+EventManager::EventManager(vector <Event*> events, vector <Attendee> attendees, vector <EventPlanner> planners) {
     this->events = events;
     this->attendees = attendees;
+    this->planners = planners;
 }
 
 void EventManager::addEvent(Event* event) {
@@ -21,6 +19,10 @@ void EventManager::addEvent(Event* event) {
 
 void EventManager::addAttendee(Attendee attendee) {
     attendees.push_back(attendee);
+}
+
+void EventManager::addPlanner(EventPlanner planner) {
+    planners.push_back(planner);
 }
 
 void EventManager::removeEvent(Event* event) {
@@ -45,13 +47,23 @@ void EventManager::removeAttendee(Attendee attendee) {
     }
 }
 
+void EventManager::removePlanner(EventPlanner planner) {
+    string name = planner.getEventName();
+    for (int i = 0; i < planners.size(); i++) {
+        if (planners[i].getEventName() == name) {
+            vector<EventPlanner>::iterator it = planners.begin() + i;
+            planners.erase(it);
+            break;
+        }
+    }
+}
+
 void EventManager::findEvent(string id) {
     int n = 0;
     for (auto & event : events) {
         if (event->getId() == id) {
             event->getInfoAboutEvent();
             n++;
-            break;
         }
     }
     if (n == 0)
@@ -64,14 +76,28 @@ void EventManager::findAttendee(string fullName) {
         if (attendee.getNameOfAttendee() == fullName) {
             n++;
             attendee.getInfoAboutAttendee();
-            break;
         }
     }
     if (n == 0)
         cout << "No attendee with that name has been found. Please try again." << endl;
 }
 
+void EventManager::findPlanner(Event* event) {
+    int n = 0;
+    for (auto & planner : planners) {
+        if (planner.getEventName() == event->getNameOfEvent()) {
+            n++;
+            planner.getInfoAboutPlanner();
+        }
+    }
+    if (n == 0)
+        cout << "No event planner with that name has been found. Please try again." << endl;
+}
+
 void EventManager::attendeeRegistration(Event* event) {
+    string fullName;
+    string email;
+    string phoneNumber;
     cout << "Enter attendee's full name: ";
     getline(cin, fullName);
     cout << "Enter attendee's email: ";
@@ -108,15 +134,28 @@ void EventManager::printAllAttendees() {
     }
 }
 
-bool operator ==(Attendee& attendee1, Attendee& attendee2) {
-    return attendee1.getEvent() == attendee2.getEvent();
+void EventManager::printAllPlanners() {
+    if(planners.empty())
+        cout << "No event planners were registered." << endl;
+    else {
+        cout << "Registred attendees: " << endl;
+        for (auto &planner: planners)
+            planner.getInfoAboutPlanner();
+    }
 }
 
-void EventManager::isAttendeesAtSameEvent(Attendee attendee1, Attendee attendee2) {
+void EventManager::areAttendeesAtSameEvent(Attendee attendee1, Attendee attendee2) {
     if(attendee1 == attendee2)
         cout << "These attendees are at the same event: " << attendee1.getEvent()->getNameOfEvent() << endl;
     else
         cout << "These attendees are NOT at the same event." << endl;
+}
+
+void EventManager::areOrganiseSameEvent(EventPlanner planner1, EventPlanner planner2) {
+    if(planner1 == planner2)
+        cout << "These event planners are organising the same event: " << planner1.getEventName() << endl;
+    else
+        cout << "These event planners are NOT organising the same event." << endl;
 }
 
 EventManager::~EventManager() = default;

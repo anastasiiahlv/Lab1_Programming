@@ -38,4 +38,8 @@ void Attendee::getInfoAboutAttendee() {
     cout << "-----------------------------------" << endl;
 }
 
+bool operator ==(Attendee& attendee1, Attendee& attendee2) {
+    return attendee1.getEvent() == attendee2.getEvent();
+}
+
 Attendee::~Attendee() = default;
