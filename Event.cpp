@@ -1,16 +1,17 @@
 #include "Event.h"
 #include <iostream>
 #include <string>
+#include <utility>
 using namespace std;
 
 Event::Event() = default;
 
 Event::Event(string name, string date, string time, string location, string id) {
-    this->name = name;
-    this->date = date;
-    this->time = time;
-    this->location = location;
-    this->id = id;
+    this->name = std::move(name);
+    this->date = std::move(date);
+    this->time = std::move(time);
+    this->location = std::move(location);
+    this->id = std::move(id);
 }
 
 string Event::getNameOfEvent() {
@@ -33,7 +34,7 @@ string Event::getId() {
     return id;
 }
 
-void Event::getInfoAboutEvent() const{
+void Event::getInfoAboutEvent() {
     cout << "-----------------------------------" << endl;
     cout << "Information about event: " << name << endl;
     cout << "Date: " << date << endl;

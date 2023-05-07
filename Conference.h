@@ -13,7 +13,7 @@ protected:
 public:
     Conference(string name, string date, string time, string location, string id, string topic, double price);
     string getTopicOfConf();
-    double getPriceForConf() const;
+    double getPriceForConf();
     void getInfoAboutConference();
     ~Conference();
 };

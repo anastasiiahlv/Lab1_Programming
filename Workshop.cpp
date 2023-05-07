@@ -2,17 +2,19 @@
 #include "Event.h"
 #include <iostream>
 #include <string>
+#include <utility>
 
 using namespace std;
 
 Workshop::Workshop(string name, string date, string time, string location, string id, string topic, double price)
-        : Event(name, date, time, location, id), topic(topic), price(price) {};
+        : Event(std::move(name), std::move(date), std::move(time), std::move(location), std::move(id)),
+        topic(std::move(topic)), price(price) {};
 
 string Workshop::getTopicOfWorkshop() {
     return topic;
 }
 
-double Workshop::getPriceForWorkshop() const {
+double Workshop::getPriceForWorkshop() {
     return price;
 }
 

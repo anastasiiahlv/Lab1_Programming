@@ -30,7 +30,7 @@ int main() {
     manager.addEvent(&workshop2);
 
     manager.addEvent(&conferense1);
-    manager.addEvent(&conferense1);
+    manager.addEvent(&conferense2);
 
     // Creating attendees and adding them to the vector attendees
     Attendee person1("Andrii Shevshenko", "andrii@gmail.com", "380968875884", &conferense1);

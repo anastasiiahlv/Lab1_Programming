@@ -2,15 +2,16 @@
 #include <iostream>
 #include <cmath>
 #include <string>
+#include <utility>
 #include <vector>
 #include "Event.h"
 #include "Attendee.h"
 using namespace std;
 
 EventManager::EventManager(vector <Event*> events, vector <Attendee> attendees, vector <EventPlanner> planners) {
-    this->events = events;
-    this->attendees = attendees;
-    this->planners = planners;
+    this->events = std::move(events);
+    this->attendees = std::move(attendees);
+    this->planners = std::move(planners);
 }
 
 void EventManager::addEvent(Event* event) {
@@ -29,7 +30,7 @@ void EventManager::removeEvent(Event* event) {
     string name = event->getNameOfEvent();
     for (int i = 0; i < events.size(); i++) {
         if (events[i]->getNameOfEvent() == name) {
-            vector<Event*>::iterator it = events.begin() + i;
+            auto it = events.begin() + i;
             events.erase(it);
             break;
         }
@@ -40,7 +41,7 @@ void EventManager::removeAttendee(Attendee attendee) {
     string name = attendee.getNameOfAttendee();
     for (int i = 0; i < attendees.size(); i++) {
         if (attendees[i].getNameOfAttendee() == name) {
-            vector<Attendee>::iterator it = attendees.begin() + i;
+            auto it = attendees.begin() + i;
             attendees.erase(it);
             break;
         }
@@ -51,7 +52,7 @@ void EventManager::removePlanner(EventPlanner planner) {
     string name = planner.getEventName();
     for (int i = 0; i < planners.size(); i++) {
         if (planners[i].getEventName() == name) {
-            vector<EventPlanner>::iterator it = planners.begin() + i;
+            auto it = planners.begin() + i;
             planners.erase(it);
             break;
         }

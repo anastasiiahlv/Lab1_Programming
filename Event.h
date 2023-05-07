@@ -22,7 +22,7 @@ public:
     string getTime();
     string getLocation();
     string getId();
-    void getInfoAboutEvent() const;
+    void getInfoAboutEvent();
     friend bool operator ==(Event& event1, Event& event2);
     ~Event();
 };

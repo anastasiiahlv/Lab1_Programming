@@ -1,15 +1,16 @@
 #include "Attendee.h"
 #include <iostream>
 #include <string>
+#include <utility>
 #include "Event.h"
 using namespace std;
 
 Attendee::Attendee() =default;
 
 Attendee::Attendee(string fullName, string email, string phoneNumber, Event* event) {
-    this->fullName = fullName;
-    this->email = email;
-    this->phoneNumber = phoneNumber;
+    this->fullName = std::move(fullName);
+    this->email = std::move(email);
+    this->phoneNumber = std::move(phoneNumber);
     this->event = event;
 }
 
