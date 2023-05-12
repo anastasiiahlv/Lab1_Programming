@@ -100,11 +100,11 @@ void EventManager::attendeeRegistration(Event* event) {
     string email;
     string phoneNumber;
     cout << "Enter attendee's full name: ";
-    getline(cin, fullName);
+    getline(cin >> ws, fullName);
     cout << "Enter attendee's email: ";
-    getline(cin, email);
+    getline(cin >> ws, email);
     cout << "Enter attendee's phone number: ";
-    getline(cin, phoneNumber);
+    getline(cin >> ws, phoneNumber);
 
     Attendee registred_attendee(fullName, email, phoneNumber, event);
     addAttendee(registred_attendee);

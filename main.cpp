@@ -52,18 +52,27 @@ int main() {
     manager.addPlanner(planner3);
     manager.addPlanner(planner4);
 
-    // Find methods
+    //check for add methods
+    //manager.printAllEvents();
+    //manager.printAllAttendees();
+    //manager.printAllPlanners();
+
+    // check find methods
     //manager.findEvent("WCA414076");
     //manager.findAttendee("Andrii Shevshenko");
     //manager.findPlanner(&workshop2);
     //manager.findPlanner(&conferense2);
 
+    //check remove methods
+    //manager.removePlanner(planner1);
+    //manager.printAllPlanners();
+
+    //check for operator overloading
+    //manager.areAttendeesAtSameEvent(person1, person2);
+    //manager.areOrganiseSameEvent(planner2, planner3);
+
     // Attendee registration
-    manager.attendeeRegistration(&conferense1);
-
-    manager.areAttendeesAtSameEvent(person1, person2);
-    manager.areOrganiseSameEvent(planner2, planner3);
-
+    //manager.attendeeRegistration(&conferense1);
 
     return 0;
 }
